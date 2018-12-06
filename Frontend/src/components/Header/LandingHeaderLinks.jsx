@@ -31,7 +31,7 @@ function LandingHeaderLinks(props) {
                     placement={window.innerWidth > 959 ? "top" : "left"}
                     classes={{tooltip: classes.tooltip}}>
                     <Button
-                        href="https://github.com/danielfct/ipm"
+                        href="https://github.com/danielfct/savr"
                         target="_blank"
                         color={"transparent"}
                         className={classes.navLink}>
@@ -41,11 +41,11 @@ function LandingHeaderLinks(props) {
             </ListItem>
             <ListItem className={classes.listItem}>
                 <Tooltip
-                    title="Website da cadeira"
+                    title="Website do projeto"
                     placement={window.innerWidth > 959 ? "top" : "left"}
                     classes={{tooltip: classes.tooltip}}>
                     <Button
-                        href="http://ctp.di.fct.unl.pt/miei/ipm/"
+                        href="https://github.com/danielfct/ipm"
                         target="_blank"
                         color={"transparent"}
                         className={classes.navLink}>

@@ -39,6 +39,19 @@ const spendings2018 = {
             fontFamily: "Helvetica",
             margin: 10
         },
+        subtitles: [
+            {
+                text: "Desde 1 de janeiro de 2018",
+                fontColor: "grey",
+                fontSize: 11
+            },
+            {
+                text: "até 20 de novembro de 2017",
+                fontColor: "grey",
+                fontSize: 11,
+                margin: 20
+            }
+        ],
         legend: {
             fontWeight: "normal",
         },
@@ -112,6 +125,19 @@ export const monthlySpending2017 = {
             fontFamily: "Helvetica",
             margin: 10
         },
+        subtitles:[
+            {
+                text: "Desde 1 de janeiro de 2017",
+                fontColor: "grey",
+                fontSize: 11
+            },
+            {
+                text: "até 31 de dezembro de 2017",
+                fontColor: "grey",
+                fontSize: 11,
+                margin: 20
+            }
+        ],
         legend: {
             fontWeight: "normal",
         },
@@ -200,6 +226,19 @@ export const spendingsMarch2018 = {
         legend: {
             fontWeight: "normal",
         },
+        subtitles:[
+            {
+                text: "Desde 1 de março de 2018",
+                fontColor: "grey",
+                fontSize: 11
+            },
+            {
+                text: "até 31 de março de 2018",
+                fontColor: "grey",
+                fontSize: 11,
+                margin: 20
+            }
+        ],
         data: [{
             type: "pie",
             showInLegend: true,
@@ -267,6 +306,19 @@ export const gainingsComparation20162017 = {
             fontFamily: "Helvetica",
             margin: 10
         },
+        subtitles:[
+            {
+                text: "Desde 1 de janeiro de 2016",
+                fontColor: "grey",
+                fontSize: 11
+            },
+            {
+                text: "até 31 de dezembro de 2017",
+                fontColor: "grey",
+                fontSize: 11,
+                margin: 20
+            }
+        ],
         toolTip: {
             shared: true
         },
@@ -388,7 +440,7 @@ function randomIntFromInterval(min, max) { // min and max included
     return Math.floor(Math.random()*(max-min+1)+min);
 }
 
-export function progressThroughTimeChartTemplate(title, categoryType, initialDate, finalDate) {
+export function progressThroughTimeChartTemplate(title, categoryType, initialDate, finalDate, dataAggregation) {
     let jan = randomIntFromInterval(500, 800);
     let fev = randomIntFromInterval(600, 1000);
     let mar = randomIntFromInterval(600, 900);
@@ -419,6 +471,19 @@ export function progressThroughTimeChartTemplate(title, categoryType, initialDat
                 fontFamily: "Helvetica",
                 margin: 10
             },
+            subtitles:[
+                {
+                    text: "Desde " + new Date(initialDate).toLocaleDateString('pt', dateOptions),
+                    fontColor: "grey",
+                    fontSize: 11
+                },
+                {
+                    text: "até " + new Date(finalDate).toLocaleDateString('pt', dateOptions),
+                    fontColor: "grey",
+                    fontSize: 11,
+                    margin: 20
+                }
+            ],
             legend: {
                 fontWeight: "normal",
             },
@@ -486,7 +551,7 @@ export function progressThroughTimeChartTemplate(title, categoryType, initialDat
     };
 }
 
-export function categoryThroughTimeChartTemplate(title, categoryType, category, initialDate, finalDate) {
+export function categoryThroughTimeChartTemplate(title, categoryType, category, initialDate, finalDate, dataAggregation) {
     let categoryInfo = categoryType === "Receita" ? earnedCategories.get(category) : spentCategories.get(category);
     let jan = randomIntFromInterval(500, 1000) * categoryInfo.weight;
     let fev = randomIntFromInterval(500, 1000) * categoryInfo.weight;
@@ -518,6 +583,19 @@ export function categoryThroughTimeChartTemplate(title, categoryType, category, 
                 fontFamily: "Helvetica",
                 margin: 10
             },
+            subtitles:[
+                {
+                    text: "Desde " + new Date(initialDate).toLocaleDateString('pt', dateOptions),
+                    fontColor: "grey",
+                    fontSize: 11
+                },
+                {
+                    text: "até " + new Date(finalDate).toLocaleDateString('pt', dateOptions),
+                    fontColor: "grey",
+                    fontSize: 11,
+                    margin: 20
+                }
+            ],
             legend: {
                 fontWeight: "normal",
             },
@@ -585,7 +663,7 @@ export function categoryThroughTimeChartTemplate(title, categoryType, category, 
     };
 }
 
-export function categoriesOnTimeIntervalChartTemplate(title, categoryType, initialDate, finalDate) {
+export function categoriesOnTimeIntervalChartTemplate(title, categoryType, initialDate, finalDate, dataAggregation) {
     return {
         title: title,
         date: new Date().toLocaleDateString('pt', dateOptions),
@@ -604,6 +682,19 @@ export function categoriesOnTimeIntervalChartTemplate(title, categoryType, initi
                 fontFamily: "Helvetica",
                 margin: 10
             },
+            subtitles:[
+                {
+                    text: "Desde " + new Date(initialDate).toLocaleDateString('pt', dateOptions),
+                    fontColor: "grey",
+                    fontSize: 11
+                },
+                {
+                    text: "até " + new Date(finalDate).toLocaleDateString('pt', dateOptions),
+                    fontColor: "grey",
+                    fontSize: 11,
+                    margin: 20
+                }
+            ],
             legend: {
                 fontWeight: "normal",
             },
@@ -662,7 +753,7 @@ export function categoriesOnTimeIntervalChartTemplate(title, categoryType, initi
 
 export function distinctTimeIntervalChartTemplate(title, categoryType,
                                                   firstInitialDate, firstFinalDate,
-                                                  secondInitialDate, secondFinalDate) {
+                                                  secondInitialDate, secondFinalDate, dataAggregation) {
     let seg1 = randomIntFromInterval(40, 60);
     let ter1 = randomIntFromInterval(30, 50);
     let qua1 = randomIntFromInterval(30, 50);
@@ -696,6 +787,21 @@ export function distinctTimeIntervalChartTemplate(title, categoryType,
                 fontFamily: "Helvetica",
                 margin: 10
             },
+            subtitles:[
+                {
+                    text: "Desde " + new Date(firstInitialDate).toLocaleDateString('pt', dateOptions) +
+                        " até " + new Date(firstFinalDate).toLocaleDateString('pt', dateOptions),
+                    fontColor: "grey",
+                    fontSize: 11
+                },
+                {
+                    text: "Desde " + new Date(secondInitialDate).toLocaleDateString('pt', dateOptions) +
+                        " até " + new Date(secondFinalDate).toLocaleDateString('pt', dateOptions),
+                    fontColor: "grey",
+                    fontSize: 11,
+                    margin: 20
+                }
+            ],
             toolTip: {
                 shared: true,
             },

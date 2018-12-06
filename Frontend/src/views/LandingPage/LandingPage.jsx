@@ -42,7 +42,7 @@ class LandingPage extends React.Component {
                         rightLinks={<LandingHeaderLinks onUserLogin={this.handleUserAuthDialogOpen}/>}
                         fixed
                         changeColorOnScroll={{
-                            height: 300,
+                            height: 100,
                             color: "white",
                             titleColor: "primary"
                         }}

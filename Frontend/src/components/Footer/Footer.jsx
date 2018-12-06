@@ -13,17 +13,35 @@ function Footer({...props}) {
                     <List className={classes.list}>
                         <ListItem className={classes.inlineBlock}>
                             <a
+                                href="https://github.com/danielfct/ipm_project"
                                 target="_blank"
-                                href="https://github.com/danielfct/savr.github.io"
                                 className={classes.block}
                             >
-                                Repositório GitHub
+                                Repositório global
                             </a>
                         </ListItem>
                         <ListItem className={classes.inlineBlock}>
                             <a
+                                href="https://github.com/danielfct/ipm"
                                 target="_blank"
-                                href="http://ctp.di.fct.unl.pt/miei/ipm/page4/page4.html"
+                                className={classes.block}
+                            >
+                                Repositório do website
+                            </a>
+                        </ListItem>
+                        <ListItem className={classes.inlineBlock}>
+                            <a
+                                href="https://github.com/danielfct/savr"
+                                target="_blank"
+                                className={classes.block}
+                            >
+                                Repositório do savr
+                            </a>
+                        </ListItem>
+                        <ListItem className={classes.inlineBlock}>
+                            <a
+                                href="http://ctp.di.fct.unl.pt/miei/ipm/"
+                                target="_blank"
                                 className={classes.block}
                             >
                                 IPM Website
@@ -39,11 +57,11 @@ function Footer({...props}) {
               João Gonçalves
             </a>
               {" "} &bull;
-            <a target="_blank" href="https://github.com/filipeamda" className={classes.a}>
+              <a target="_blank" href="https://github.com/filipeamda" className={classes.a}>
               Filipe Almeida
             </a>
               {" "} &bull;
-            <a target="_blank" href="https://github.com/danielfct" className={classes.a}>
+              <a target="_blank" href="https://github.com/danielfct" className={classes.a}>
               Daniel Pimenta
             </a>
           </span>

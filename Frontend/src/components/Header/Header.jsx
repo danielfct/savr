@@ -130,7 +130,7 @@ class Header extends React.Component {
         });
         const brandComponent = this.makeBrand();
         return (
-            <AppBar className={appBarClasses}>
+            <AppBar className={classNames(classes.header, appBarClasses)}>
                 <Toolbar className={classes.container}>
                     {leftLinks !== undefined ? brandComponent : null}
                     <div className={classes.flex}>
@@ -239,6 +239,10 @@ Header.propTypes = {
 };
 
 const styles = theme => ({
+    header: {
+        zIndex: -1,
+        position: "relative"
+    },
     appBar: {
         display: "flex",
         border: "0",
@@ -259,11 +263,11 @@ const styles = theme => ({
     },
     absolute: {
         position: "absolute",
-        zIndex: "1100"
+        zIndex: 50
     },
     fixed: {
         position: "fixed",
-        zIndex: "1100"
+        zIndex: 50
     },
     container: {
         ...container,

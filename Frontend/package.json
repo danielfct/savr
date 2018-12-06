@@ -1,9 +1,9 @@
 {
-  "name": "ipm",
+  "name": "savr",
   "version": "1.0.0",
   "private": true,
   "main": "dist/index.js",
-  "homepage": "https://danielfct.github.io/ipm",
+  "homepage": "https://danielfct.github.io/savr",
   "dependencies": {
     "@date-io/moment": "0.0.2",
     "@material-ui/core": "latest",

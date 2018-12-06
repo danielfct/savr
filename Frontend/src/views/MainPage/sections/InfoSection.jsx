@@ -55,7 +55,7 @@ class InfoSection extends React.Component {
 
     handleConfirmGain = () => {
         let invalid = false;
-        if (!this.state.gain) {
+        if (!this.state.gain || parseFloat(this.state.gain) <= 0.0) {
             this.setState({noAmountError: true});
             invalid = true;
         }
@@ -74,7 +74,7 @@ class InfoSection extends React.Component {
 
     handleConfirmSpending = () => {
         let invalid = false;
-        if (!this.state.spending) {
+        if (!this.state.spending || parseFloat(this.state.spending) <= 0.0) {
             this.setState({noAmountError: true});
             invalid = true;
         }

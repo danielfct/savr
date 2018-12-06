@@ -45,6 +45,7 @@ class NewChartDialog extends React.Component {
         firstFinalDate: new Date(),
         secondInitialDate: new Date(),
         secondFinalDate: new Date(),
+        dataAggregation: "",
         noTitleError: false,
         noChartTypeError: false,
         noCategoryTypeError: false,
@@ -53,6 +54,7 @@ class NewChartDialog extends React.Component {
         noFirstFinalDateError: false,
         noSecondInitialDateError: false,
         noSecondFinalDateError: false,
+        noDataAggregationError: false
     };
 
     handleChangeDate = name => date => {
@@ -80,6 +82,8 @@ class NewChartDialog extends React.Component {
             this.setState({noCategoryTypeError: false});
         } else if (name === "category") {
             this.setState({noCategoryError: false});
+        } else if (name === "dataAggregation") {
+            this.setState({noDataAggregationError: false});
         }
         this.setState({
             [name]: event.target.value,
@@ -130,9 +134,14 @@ class NewChartDialog extends React.Component {
             this.setState({noSecondFinalDateError: true});
             invalid = true;
         }
+        if (!this.state.dataAggregation) {
+            this.setState({noDataAggregationError: true});
+            invalid = true;
+        }
         if (!invalid) {
             this.props.handleConfirm(this.state.title, this.state.chartType, this.state.categoryType, this.state.category,
-                this.state.firstInitialDate, this.state.firstFinalDate, this.state.secondInitialDate, this.state.secondFinalDate);
+                this.state.firstInitialDate, this.state.firstFinalDate, this.state.secondInitialDate, this.state.secondFinalDate,
+                this.state.dataAggregation);
         }
     };
 
@@ -421,6 +430,48 @@ class NewChartDialog extends React.Component {
                                         error={this.state.noSecondFinalDateError}/>
                                 </MuiThemeProvider>
                             </GridItem>}
+                            <GridItem xs={3}>
+                                <Typography variant={"body2"}>
+                                    Agregação de dados
+                                </Typography>
+                            </GridItem>
+                            <GridItem xs={9}>
+                                <TextField
+                                    error={this.state.noDataAggregationError}
+                                    select
+                                    value={this.state.dataAggregation}
+                                    label="Agregação de dados"
+                                    fullWidth
+                                    className={classes.textField}
+                                    onChange={this.handleChange('dataAggregation')}
+                                    SelectProps={{
+                                        MenuProps: {
+                                            className: classes.menu,
+                                        },
+                                    }}
+                                    InputLabelProps={{
+                                        classes: {
+                                            focused: classes.greenFocused,
+                                        },
+                                    }}
+                                    InputProps={{
+                                        classes: {
+                                            root: classes.whiteOutlinedInput,
+                                            focused: classes.whiteFocused,
+                                            notchedOutline: classes.notchedOutline,
+                                            input: classes.whiteInput,
+                                        },
+                                    }}
+                                    margin="dense"
+                                    variant="outlined">
+                                    <MenuItem value="">Seleciona o tipo de agregação de dados...</MenuItem>
+                                    <Divider/>
+                                    <MenuItem value="Diária">Diária</MenuItem>
+                                    <MenuItem value="Semanal">Semanal</MenuItem>
+                                    <MenuItem value="Mensal">Mensal</MenuItem>
+                                    <MenuItem value="Anual">Anual</MenuItem>
+                                </TextField>
+                            </GridItem>
                         </GridContainer>
                     </form>
                 </DialogContent>

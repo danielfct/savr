@@ -19,6 +19,10 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import {DESPESA} from "../../variables/history";
+import Snackbar from "@material-ui/core/Snackbar/Snackbar";
+import Fade from "@material-ui/core/Fade/Fade";
+import CloseIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import MySnackbarContent from "../../components/Snackbar/MySnackBarContent";
 
 function desc(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -210,6 +214,7 @@ class HistoryTable extends React.Component {
         selected: [],
         page: 0,
         rowsPerPage: 5,
+        successDelete: false
     };
 
     handleDelete = () => {
@@ -221,6 +226,7 @@ class HistoryTable extends React.Component {
         selected.length = 0;
         this.setState({selected: selected});
         this.props.onUpdateHistory(userHistory);
+        this.setState({successDelete: true})
     };
 
     handleRequestSort = (event, property) => {
@@ -273,69 +279,100 @@ class HistoryTable extends React.Component {
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
+    handleClose = (event, reason) => {
+        this.setState({successDelete: false});
+    };
+
     render() {
         const { classes, userHistory } = this.props;
         const { order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, userHistory.length - page * rowsPerPage);
         return (
-            <Paper className={classes.root}>
-                <EnhancedTableToolbar numSelected={selected.length} classes={classes} handleDelete={this.handleDelete}/>
-                <div className={classes.tableWrapper}>
-                    <Table className={classes.table} aria-labelledby="tableTitle">
-                        <HistoryTableHead
-                            numSelected={selected.length}
-                            order={order}
-                            orderBy={orderBy}
-                            onSelectAllClick={this.handleSelectAllClick}
-                            onRequestSort={this.handleRequestSort}
-                            rowCount={userHistory.length}
-                        />
-                        <TableBody>
-                            {stableSort(userHistory, getSorting(order, orderBy))
-                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                .map(entry => {
-                                    const isSelected = this.isSelected(entry.id);
-                                    return (
-                                        <TableRow
-                                            hover
-                                            onClick={event => this.handleClick(event, entry.id)}
-                                            role="checkbox"
-                                            aria-checked={isSelected}
-                                            tabIndex={-1}
-                                            key={entry.id}
-                                            selected={isSelected}
-                                        >
-                                            <TableCell padding="checkbox">
-                                                <CustomCheckbox checked={isSelected} />
-                                            </TableCell>
-                                            <TableCell component="th" scope="row" padding="none">{entry.date.toLocaleDateString("pt")}</TableCell>
-                                            <TableCell>{entry.type === DESPESA ? "Despesa" : "Receita"}</TableCell>
-                                            <TableCell>{<entry.icon className={classes.icon}/>}{entry.category}</TableCell>
-                                            <TableCell>{entry.amount + (entry.type === DESPESA ? " € gastos" : " € recebidos")}</TableCell>
-                                            <TableCell>{entry.description}</TableCell>
-                                        </TableRow>
-                                    );
-                                })}
-                        </TableBody>
-                    </Table>
-                </div>
-                <TablePagination
-                    rowsPerPageOptions={[5, 10, 25]}
-                    component="div"
-                    count={userHistory.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    backIconButtonProps={{
-                        'aria-label': 'Página anterior',
+            <div>
+                {this.state.successDelete &&
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'center',
+                        horizontal: 'center',
                     }}
-                    nextIconButtonProps={{
-                        'aria-label': 'Página seguinte',
-                    }}
-                    onChangePage={this.handleChangePage}
-                    onChangeRowsPerPage={this.handleChangeRowsPerPage}
-                    labelRowsPerPage={"Linhas por página"}
-                />
-            </Paper>
+                    open={true}
+                    autoHideDuration={3000}
+                    onClose={this.handleClose}
+                    TransitionComponent={Fade}
+                    action={[
+                        <IconButton
+                            key="close"
+                            aria-label="Close"
+                            color="inherit"
+                            className={classes.close}
+                            onClick={this.handleClose}>
+                            <CloseIcon/>
+                        </IconButton>,
+                    ]}>
+                    <MySnackbarContent
+                        onClose={this.handleClose}
+                        variant="success"
+                        message={"Histórico atualizado com sucesso."}/>
+                </Snackbar>}
+                <Paper className={classes.root}>
+                    <EnhancedTableToolbar numSelected={selected.length} classes={classes} handleDelete={this.handleDelete}/>
+                    <div className={classes.tableWrapper}>
+                        <Table className={classes.table} aria-labelledby="tableTitle">
+                            <HistoryTableHead
+                                numSelected={selected.length}
+                                order={order}
+                                orderBy={orderBy}
+                                onSelectAllClick={this.handleSelectAllClick}
+                                onRequestSort={this.handleRequestSort}
+                                rowCount={userHistory.length}
+                            />
+                            <TableBody>
+                                {stableSort(userHistory, getSorting(order, orderBy))
+                                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                    .map(entry => {
+                                        const isSelected = this.isSelected(entry.id);
+                                        return (
+                                            <TableRow
+                                                hover
+                                                onClick={event => this.handleClick(event, entry.id)}
+                                                role="checkbox"
+                                                aria-checked={isSelected}
+                                                tabIndex={-1}
+                                                key={entry.id}
+                                                selected={isSelected}
+                                            >
+                                                <TableCell padding="checkbox">
+                                                    <CustomCheckbox checked={isSelected} />
+                                                </TableCell>
+                                                <TableCell component="th" scope="row" padding="none">{entry.date.toLocaleDateString("pt")}</TableCell>
+                                                <TableCell>{entry.type === DESPESA ? "Despesa" : "Receita"}</TableCell>
+                                                <TableCell>{<entry.icon className={classes.icon}/>}{entry.category}</TableCell>
+                                                <TableCell>{entry.amount + (entry.type === DESPESA ? " € gastos" : " € recebidos")}</TableCell>
+                                                <TableCell>{entry.description}</TableCell>
+                                            </TableRow>
+                                        );
+                                    })}
+                            </TableBody>
+                        </Table>
+                    </div>
+                    <TablePagination
+                        rowsPerPageOptions={[5, 10, 25]}
+                        component="div"
+                        count={userHistory.length}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        backIconButtonProps={{
+                            'aria-label': 'Página anterior',
+                        }}
+                        nextIconButtonProps={{
+                            'aria-label': 'Página seguinte',
+                        }}
+                        onChangePage={this.handleChangePage}
+                        onChangeRowsPerPage={this.handleChangeRowsPerPage}
+                        labelRowsPerPage={"Linhas por página"}
+                    />
+                </Paper>
+            </div>
         );
     }
 }

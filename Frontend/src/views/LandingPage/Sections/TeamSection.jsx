@@ -8,6 +8,10 @@ import avatar from "assets/images/avatar.jpg";
 import { cardTitle, title } from "assets/jss/savr.jsx";
 import imagesStyle from "assets/jss/components/imagesStyles.jsx";
 
+import joao from "../../../assets/images/joao.jpg";
+import filipe from "../../../assets/images/filipe.jpg";
+import daniel from "../../../assets/images/daniel.jpg";
+
 class TeamSection extends React.Component {
 
     render() {
@@ -26,7 +30,7 @@ class TeamSection extends React.Component {
                         <GridItem xs={12} sm={12} md={4}>
                             <Card plain>
                                 <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
-                                    <img src={avatar} alt="..." className={imageClasses}/>
+                                    <img src={joao} alt="..." className={imageClasses}/>
                                 </GridItem>
                                 <h4 className={classes.cardTitle}>
                                     João Miguel Gago Gonçalves
@@ -38,7 +42,7 @@ class TeamSection extends React.Component {
                         <GridItem xs={12} sm={12} md={4}>
                             <Card plain>
                                 <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
-                                    <img src={avatar} alt="..." className={imageClasses}/>
+                                    <img src={filipe} alt="..." className={imageClasses}/>
                                 </GridItem>
                                 <h4 className={classes.cardTitle}>
                                     Filipe Joel Fernandes de Almeida
@@ -50,7 +54,7 @@ class TeamSection extends React.Component {
                         <GridItem xs={12} sm={12} md={4}>
                             <Card plain>
                                 <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
-                                    <img src={avatar} alt="..." className={imageClasses}/>
+                                    <img src={daniel} alt="..." className={imageClasses}/>
                                 </GridItem>
                                 <h4 className={classes.cardTitle}>
                                     Daniel Filipe Santos Pimenta
@@ -69,7 +73,7 @@ class TeamSection extends React.Component {
 
 const style = {
     section: {
-        padding: "70px 0",
+        padding: "20px 0",
         textAlign: "center"
     },
     title: {
