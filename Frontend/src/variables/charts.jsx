@@ -22,6 +22,7 @@ let dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
 let lineColors = ["red", "green", "blue", "yellow"];
 
 const spendings2018 = {
+    id: 4,
     title: "Despesas em 2018",
     date: "20 de novembro de 2018",
     chart: {
@@ -108,6 +109,7 @@ const spendings2018 = {
 };
 
 export const monthlySpending2017 = {
+    id: 3,
     title: "Despesas mensais de 2017",
     date: "15 de abril de 2018",
     chart: {
@@ -206,6 +208,7 @@ export const monthlySpending2017 = {
 
 
 export const spendingsMarch2018 = {
+    id: 2,
     title: "Despesas em março de 2018",
     date: "10 de abril de 2018",
     chart: {
@@ -289,6 +292,7 @@ export const spendingsMarch2018 = {
 
 
 export const gainingsComparation20162017 = {
+    id: 1,
     title: "Receitas 2016 vs 2017",
     date: "5 de janeiro 2018",
     chart: {

@@ -55,9 +55,9 @@ class HistorySection extends React.Component {
 
         return (
             <div className={classes.root}>
-                {userHistory.slice(0, 5).map((hist, index) =>
-                    <ExpansionPanel key={index} expanded={expanded === 'panel' + index}
-                                    onChange={this.handleChange('panel' + index)}>
+                {userHistory.slice(0, 5).map(hist =>
+                    <ExpansionPanel key={hist.id} expanded={expanded === 'panel' + hist.id}
+                                    onChange={this.handleChange('panel' + hist.id)}>
                         <ExpansionPanelSummary expandIcon={(hist.description) ? <ExpandMoreIcon/> : null}>
                             <hist.icon className={classes.icon}/>
                             <Typography className={classes.heading}>{hist.message}</Typography>

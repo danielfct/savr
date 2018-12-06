@@ -110,8 +110,7 @@ class App extends React.Component {
             firstInitialDate, firstFinalDate,
             secondInitialDate, secondFinalDate,
             dataAggregation);
-        this.state.charts.unshift(newChart);
-        this.setState({charts: this.state.charts});
+        this.setState(state => ({charts: [{id: state.charts.length+1, ...newChart}, ...state.charts]}));
     };
 
     render() {
