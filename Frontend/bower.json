@@ -1,0 +1,25 @@
+{
+  "name": "savr",
+  "homepage": "https://danielfct.github.io/ipm_project",
+  "authors": [
+    "João Miguel Gago Gonçalves 44361",
+    "Filipe Joel Fernandes de Almeida 45047",
+    "Daniel Filipe Santos Pimenta 45404"
+  ],
+  "description": "Projeto para avaliação da componente prática da unidade curricular Interação Pessoa Máquina.",
+  "main": "dist/index.js",
+  "keywords": [
+    "ipm",
+    "savr",
+    "material design",
+    "material-ui"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "private": true
+}
